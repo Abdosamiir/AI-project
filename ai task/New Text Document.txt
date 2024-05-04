@@ -1,0 +1,35 @@
+
+
+1. `import heapq`: This line imports the `heapq` module from the Python standard library. `heapq` provides functions for creating and manipulating heap data structures, which are useful for implementing priority queues.
+
+2. `def ucs_solver(partial_solution, dimensions):`: This line defines a function named `ucs_solver` that takes two parameters: `partial_solution`, which represents the current state of the partial solution, and `dimensions`, which specifies the dimensions of the chessboard (i.e., the number of queens).
+
+3. `priority_queue = [(0, partial_solution)]`: This line initializes a priority queue named `priority_queue` with a single tuple `(0, partial_solution)`. The tuple represents the initial state of the search, where the cost is 0 (initial cost) and `partial_solution` is the initial partial solution.
+
+4. `while priority_queue:`: This line starts a while loop that continues until the priority queue is empty. The loop iterates over the search process.
+
+5. `cost, current_partial_solution = heapq.heappop(priority_queue)`: This line pops the item with the lowest cost from the priority queue using the `heappop()` function from the `heapq` module. It assigns the cost to the variable `cost` and the corresponding partial solution to `current_partial_solution`.
+
+6. `if len(current_partial_solution) == dimensions:`: This line checks if the length of `current_partial_solution` is equal to `dimensions`, indicating that a complete solution (all queens placed) has been found.
+
+7. `return current_partial_solution`: This line returns the complete solution (`current_partial_solution`) if it has been found.
+
+8. `for next_column in range(dimensions):`: This line starts a loop that iterates over all possible columns (`next_column`) to place the next queen.
+
+9. `if next_column not in current_partial_solution and is_valid_solution(current_partial_solution + [next_column]):`: This line checks if placing a queen in `next_column` is a valid move. It ensures that the column is not already occupied by a queen and that placing a queen in this column does not lead to conflicts with existing queens.
+
+10. `next_partial_solution = current_partial_solution + [next_column]`: This line creates the next partial solution by adding `next_column` to the current partial solution (`current_partial_solution`).
+
+11. `next_cost = cost + 1`: This line calculates the cost of the next partial solution by incrementing the current cost by 1. In Uniform Cost Search (UCS), all actions have uniform costs.
+
+12. `heapq.heappush(priority_queue, (next_cost, next_partial_solution))`: This line pushes the next partial solution and its cost into the priority queue using the `heappush()` function. This ensures that the priority queue remains sorted by cost, with the item with the lowest cost at the front.
+
+13. `return None`: This line returns `None` if no solution is found after exploring all possibilities. 
+
+14. `if __name__ == '__main__':`: This line checks if the script is being run as the main program.
+
+15. `dimensions = int(input("Enter dimensions of the chessboard: "))`: This line prompts the user to input the dimensions of the chessboard (number of queens).
+
+16. `partial_solution = [None] * dimensions`: This line initializes the `partial_solution` list with `None` values, representing an empty partial solution.
+
+17. `print(ucs_solver(partial_solution, dimensions))`: This line calls the `ucs_solver` function with the initial partial solution and the specified dimensions, and prints the result (the solution or `None`).
