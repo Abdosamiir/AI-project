@@ -1,1 +1,1 @@
-solving N-queens problem with 5 Algorithms + GUI
+solving N-queens problem with 4 Algorithms + GUI
